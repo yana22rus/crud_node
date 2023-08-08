@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="/posts/add" method="post">
+    <input type="text" name="first_name" placeholder="Имя">
+    <input type="text" name="experience" placeholder="Лет опыта">
+    <input type="text" name="profession" placeholder="Проффесия">
+    <input type="text" name="sex" placeholder="Пол">
+    <input type="text" name="salary" placeholder="Зарплата">
+    <input type="submit" value="Сохранить">
+</form>
+<table border="1">
+    <tr>
+        <td>Имя</td>
+
+        <td>Лет опыта</td>
+
+        <td>Профессия</td>
+
+        <td>Пол</td>
+
+        <td>Зарплата</td>
+
+        <td>Удалить запись</td>
+    </tr>
+    <% results.forEach(row => { %>
+
+        <tr>
+            <td>
+                <a href="/posts/edit/<%= row.id %>"> <%= row.first_name %></a>
+            </td>
+            <td>
+                <a href="/posts/edit/<%= row.id %>"> <%= row.experience %></a>
+            </td>
+            <td>
+                <a href="/posts/edit/<%= row.id %>"> <%= row.profession %></a>
+            </td>
+            <td>
+                <a href="/posts/edit/<%= row.id %>"> <%= row.sex %></a>
+            </td>
+            <td>
+                <a href="/posts/edit/<%= row.id %>"> <%= row.salary %></a>
+            </td>
+            <td>
+                <form action="/posts/delete" method="post">
+                    <input type="text" name="delete" value="<%= row.id %>" hidden>
+                    <input type="submit" value="Удалить">
+                </form>
+            </td>
+        </tr>
+
+    <% }); %>
+
+</table>
+</body>
+</html>
